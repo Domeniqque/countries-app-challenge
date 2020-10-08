@@ -1,7 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+  :root {
+    --white: #fff;
+    --black: #121213;
+    --grey100: #f6f6f6;
+    --grey300: #495057;
+    --grey400: #3A3A3A;
+    --primary: #5C5CFF;
+  }
 
   * {
     outline: 0;
@@ -17,16 +24,25 @@ export default createGlobalStyle`
   html, body, #root {
     height: 100vh;
     width: 100vw;
+    background-color: var(--grey100);
+    font-size: 14px;
+    line-height: 28px;
+  }
+
+  @media screen and (max-width: 576px) {
+    html, body, #root {
+      font-size: 10px !important;
+    }
   }
 
   body, input, button {
-    font: 14px, 'Lato', sans-serif;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    line-height: 28px;
   }
 
   a {
     text-decoration: none;
+    color: var(--primary);
   }
 
   ul {
