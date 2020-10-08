@@ -1,11 +1,32 @@
+import gql from 'graphql-tag';
 import React from 'react';
-import { FaChevronRight, FaSearch } from 'react-icons/fa';
+import { useQuery } from 'react-apollo';
+import { FaSearch } from 'react-icons/fa';
 
-import { Container, Title, SearchContainer, Cards, Card } from './styles';
+import { Container, Title, SearchContainer } from './styles';
+import CountryList from '../../components/CountryList';
+import { ICountry } from '../../models/Country';
 
-const cards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const COUNTRIES = gql`
+  query {
+    Country(orderBy: name_asc, first: 10) {
+      _id
+      name
+      capital
+      flag {
+        emoji
+      }
+    }
+  }
+`;
 
 const Dashboard: React.FC = () => {
+  const { loading, data } = useQuery<{ Country: ICountry[] }>(COUNTRIES);
+
+  if (loading || !data) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Container>
       <Title>Search Countries</Title>
@@ -18,23 +39,7 @@ const Dashboard: React.FC = () => {
         </button>
       </SearchContainer>
 
-      <Cards>
-        {cards.map(i => (
-          <Card key={`card-${i}`}>
-            <span role="img" aria-label="Brazil flag">
-              🇧🇷
-            </span>
-
-            <div>
-              <h2>Brazil</h2>
-
-              <p>São Paulo</p>
-            </div>
-
-            <FaChevronRight role="img" aria-label="Right icon" />
-          </Card>
-        ))}
-      </Cards>
+      <CountryList data={data.Country} />
     </Container>
   );
 };
