@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  padding: 0 20px;
-  max-width: 600px;
-  margin: 0 auto 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+import { Container as BaseContainer } from '../../styles';
 
+export const Container = styled(BaseContainer)`
   > button {
     margin: 20px auto;
     background-color: var(--grey100);
@@ -20,7 +15,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
   text-align: center;
   font-size: 3rem;
-  color: var(--grey300);
+  color: var(--dark-blue);
   margin: 6rem 0 4rem;
 `;
 
@@ -29,10 +24,10 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: space-between;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  transition: box-shadow 500ms;
+  transition: box-shadow 200ms;
 
   &:focus-within {
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   }
 
   input {
@@ -45,7 +40,7 @@ export const SearchContainer = styled.div`
     width: 100%;
 
     &::placeholder {
-      color: var(--grey200);
+      color: var(--grey300);
     }
 
     &::-webkit-search-cancel-button {

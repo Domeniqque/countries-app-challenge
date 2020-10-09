@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.ul``;
+export const Container = styled.ul`
+  list-style: none;
+`;
 
 export const Card = styled.li`
   a {
@@ -9,15 +11,16 @@ export const Card = styled.li`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     min-height: 4.77rem;
     background-color: var(--white);
     padding: 0.7rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
     margin-bottom: 6px;
 
     span {
       font-size: 1.8rem;
-      margin: auto 12px;
+      margin: 0 12px;
     }
 
     > div {
@@ -33,7 +36,7 @@ export const Card = styled.li`
 
       p {
         color: var(--grey300);
-        margin-top: -6px;
+        line-height: 24px;
       }
     }
 

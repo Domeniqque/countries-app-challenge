@@ -1,24 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { debounce } from 'ts-debounce';
 
 import { Container, Title, SearchContainer } from './styles';
 import CountryList from '../../components/CountryList';
-import { ICountry } from '../../models/Country';
-
-export const COUNTRIES_QUERY = gql`
-  query {
-    countries: Country(orderBy: name_asc, first: 10) {
-      _id
-      name
-      capital
-      flag {
-        emoji
-      }
-    }
-  }
-`;
+import { ALL_COUNTRIES_QUERY, ICountry } from '../../models/Country';
 
 const INITIAL_DATA = {
   countries: [],
@@ -27,7 +14,7 @@ const INITIAL_DATA = {
 const Dashboard: React.FC = () => {
   const { data = INITIAL_DATA, loading } = useQuery<{
     countries: ICountry[];
-  }>(COUNTRIES_QUERY);
+  }>(ALL_COUNTRIES_QUERY);
 
   const [filteredData, setFilteredData] = useState<ICountry[]>([]);
   const [filter, setFilter] = useState('');

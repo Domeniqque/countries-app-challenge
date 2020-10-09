@@ -7,7 +7,7 @@ import Country from '../pages/Country';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={Dashboard} />
-    <Route path="/country" component={Country} />
+    <Route path="/country/:id" component={Country} />
   </Switch>
 );
 

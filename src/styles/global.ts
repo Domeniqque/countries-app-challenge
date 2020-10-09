@@ -5,10 +5,14 @@ export default createGlobalStyle`
     --white: #fff;
     --black: #121213;
     --grey100: #f6f6f6;
-    --grey200: #DEE3E3;
     --grey300: #999;
-    --grey400: #3A3A3A;
     --primary: #5C5CFF;
+
+    --dark-blue: #243b68;
+    --light-blue: #5C5CFF;
+    --purple: #6d5dcf;
+    --grey200: #f6f6f6;
+    --grey400: #3A3A3A;
   }
 
   * {
@@ -24,9 +28,9 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100vh;
-    background-color: var(--grey100);
+    background-color: var(--grey200);
     font-size: 14px;
-    line-height: 28px;
+    line-height: 20px;
   }
 
   @media screen and (max-width: 576px) {
@@ -42,7 +46,7 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: var(--primary);
+    color: var(--purple);
   }
 
   ul {

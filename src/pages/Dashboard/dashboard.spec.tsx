@@ -3,17 +3,18 @@ import { fireEvent, render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter } from 'react-router-dom';
 
-import Dashboard, { COUNTRIES_QUERY } from './index';
-import { COUNTRY_DATA } from '../../resources/countryData';
+import Dashboard from './index';
+import { COUNTRY_DATA_LIST } from '../../resources/countryData';
+import { ALL_COUNTRIES_QUERY } from '../../models/Country';
 
 const apolloMock = [
   {
     request: {
-      query: COUNTRIES_QUERY,
+      query: ALL_COUNTRIES_QUERY,
     },
     result: {
       data: {
-        countries: COUNTRY_DATA,
+        countries: COUNTRY_DATA_LIST,
       },
     },
   },
@@ -37,25 +38,25 @@ describe('Dashboard page', () => {
     const { getByText, findAllByRole } = setup();
 
     expect(getByText(/loading/i)).toBeInTheDocument();
-    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA.length);
+    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA_LIST.length);
   });
 
   it('should search a country', async () => {
     const { inputSearch, findAllByRole, findByText } = setup();
-    expect(await findByText('Brazil')).toBeInTheDocument();
+    expect(await findByText(/Brazil/i)).toBeInTheDocument();
 
-    fireEvent.change(inputSearch, { target: { value: 'Angola' } });
+    fireEvent.change(inputSearch, { target: { value: 'Afghanistan' } });
 
-    expect((inputSearch as HTMLInputElement).value).toBe('Angola');
+    expect((inputSearch as HTMLInputElement).value).toBe('Afghanistan');
 
-    expect(await findByText('Angola')).toBeInTheDocument();
+    expect(await findByText('Afghanistan')).toBeInTheDocument();
     expect((await findAllByRole(/link/)).length).toBe(1);
   });
 
   it('should return empty list if filter does not match', async () => {
     const { inputSearch, findAllByRole, queryByRole } = setup();
 
-    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA.length);
+    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA_LIST.length);
 
     fireEvent.change(inputSearch, { target: { value: 'Dont match' } });
 
