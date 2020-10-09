@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.ul``;
 
 export const Card = styled.li`
-  button {
+  a {
     width: 100%;
     border: none;
     display: flex;
@@ -13,7 +13,7 @@ export const Card = styled.li`
     background-color: var(--white);
     padding: 0.7rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     span {
       font-size: 1.8rem;
@@ -27,13 +27,13 @@ export const Card = styled.li`
 
       h2 {
         font-size: 1.4rem;
-        color: var(--grey300);
-        margin-bottom: 4px;
+        color: var(--grey400);
         font-weight: 500;
       }
 
       p {
         color: var(--grey300);
+        margin-top: -6px;
       }
     }
 

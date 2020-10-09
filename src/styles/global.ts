@@ -5,7 +5,8 @@ export default createGlobalStyle`
     --white: #fff;
     --black: #121213;
     --grey100: #f6f6f6;
-    --grey300: #495057;
+    --grey200: #DEE3E3;
+    --grey300: #999;
     --grey400: #3A3A3A;
     --primary: #5C5CFF;
   }
@@ -23,7 +24,6 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100vh;
-    width: 100vw;
     background-color: var(--grey100);
     font-size: 14px;
     line-height: 28px;

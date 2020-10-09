@@ -1,15 +1,15 @@
-import gql from 'graphql-tag';
-import React from 'react';
-import { useQuery } from 'react-apollo';
+import React, { useCallback, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { gql, useQuery } from '@apollo/client';
+import { debounce } from 'ts-debounce';
 
 import { Container, Title, SearchContainer } from './styles';
 import CountryList from '../../components/CountryList';
 import { ICountry } from '../../models/Country';
 
-const COUNTRIES = gql`
+export const COUNTRIES_QUERY = gql`
   query {
-    Country(orderBy: name_asc, first: 10) {
+    countries: Country(orderBy: name_asc, first: 10) {
       _id
       name
       capital
@@ -20,26 +20,58 @@ const COUNTRIES = gql`
   }
 `;
 
-const Dashboard: React.FC = () => {
-  const { loading, data } = useQuery<{ Country: ICountry[] }>(COUNTRIES);
+const INITIAL_DATA = {
+  countries: [],
+};
 
-  if (loading || !data) {
-    return <p>Loading...</p>;
-  }
+const Dashboard: React.FC = () => {
+  const { data = INITIAL_DATA, loading } = useQuery<{
+    countries: ICountry[];
+  }>(COUNTRIES_QUERY);
+
+  const [filteredData, setFilteredData] = useState<ICountry[]>([]);
+  const [filter, setFilter] = useState('');
+
+  const handleChangeFilter = useCallback(
+    (filterValue: string) => {
+      debounce(
+        searchValue => {
+          const countries = data.countries.filter(
+            c => c.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1,
+          );
+
+          setFilter(searchValue);
+          setFilteredData(countries);
+        },
+        150,
+        { isImmediate: true },
+      )(filterValue);
+    },
+    [data?.countries],
+  );
 
   return (
     <Container>
       <Title>Search Countries</Title>
 
-      <SearchContainer>
-        <input type="search" placeholder="Type a country..." />
-
-        <button type="button">
+      <SearchContainer role="search">
+        <div>
           <FaSearch />
-        </button>
+        </div>
+
+        <input
+          type="search"
+          placeholder="Type a country..."
+          aria-label="Search by country name"
+          onChange={e => handleChangeFilter(e.target.value)}
+        />
       </SearchContainer>
 
-      <CountryList data={data.Country} />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <CountryList data={filter ? filteredData : data.countries} />
+      )}
     </Container>
   );
 };

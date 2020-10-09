@@ -1,33 +1,35 @@
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { ICountry } from '../../models/Country';
 import { Container, Card } from './styles';
 
 interface CountryListProps {
-  data: ICountry[];
+  data: ICountry[] | undefined;
 }
 
 const CountryList: React.FC<CountryListProps> = ({ data }) => {
   return (
     <Container>
-      {data.map(country => (
-        <Card key={`country-${country._id}`}>
-          <button type="button">
-            <span role="img" aria-label={`${country.name} flag`}>
-              {country.flag.emoji}
-            </span>
+      {data &&
+        data.map(country => (
+          <Card key={`country-${country._id}`}>
+            <Link to={`/country/${country._id}`}>
+              <span role="img" aria-label={`${country.name} flag`}>
+                {country.flag.emoji}
+              </span>
 
-            <div>
-              <h2>{country.name}</h2>
+              <div>
+                <h2>{country.name}</h2>
 
-              {country.capital && <p>{country.capital}</p>}
-            </div>
+                {country.capital && <p>{country.capital}</p>}
+              </div>
 
-            <FaChevronRight role="img" aria-label="Right icon" />
-          </button>
-        </Card>
-      ))}
+              <FaChevronRight role="img" aria-label="Right icon" />
+            </Link>
+          </Card>
+        ))}
     </Container>
   );
 };
