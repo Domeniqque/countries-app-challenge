@@ -1,28 +1,70 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FaChevronLeft } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { debounce } from 'ts-debounce';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { Container, Title, SearchContainer } from './styles';
+import CountryList from '../../components/CountryList';
 import { ICountry } from '../../models/Country';
-import CountryDetail from '../../components/CountryDetail';
-import { Container } from './styles';
 import { IState } from '../../store';
+import { addCountryList } from '../../store/modules/country/actions';
+import { fetchCountries } from '../../services/api/country';
 
 const Country: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const [filter, setFilter] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const country = useSelector<IState, ICountry | undefined>(state =>
-    state.country.list.find(c => c._id === id),
+  const filteredCountryList = useSelector<IState, ICountry[]>(state =>
+    state.country.list.filter(c => {
+      return c.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    }),
   );
+
+  const totalCountries = useSelector<IState, number>(
+    state => state.country.list.length,
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (totalCountries === 0) {
+      fetchCountries().then(data => {
+        dispatch(addCountryList(data.countries));
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+    }
+  }, [dispatch, totalCountries]);
+
+  const handleDebouncedFilter = useCallback((filterValue: string) => {
+    debounce(
+      searchValue => {
+        setFilter(searchValue);
+      },
+      150,
+      { isImmediate: true },
+    )(filterValue);
+  }, []);
 
   return (
     <Container>
-      <Link to="/">
-        <FaChevronLeft size={24} />
-        <span>go back</span>
-      </Link>
+      <Title>Search Countries</Title>
 
-      <CountryDetail country={country} />
+      <SearchContainer role="search">
+        <div>
+          <FaSearch />
+        </div>
+
+        <input
+          type="search"
+          placeholder="Type a country..."
+          aria-label="Search by country name"
+          onChange={e => handleDebouncedFilter(e.target.value)}
+        />
+      </SearchContainer>
+
+      {loading ? <p>Loading...</p> : <CountryList data={filteredCountryList} />}
     </Container>
   );
 };

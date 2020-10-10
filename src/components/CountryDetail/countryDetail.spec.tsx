@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import CountryDetail, { ICountryDetail } from './index';
-import { COUNTRY_DATA } from '../../resources/countryData';
+import { COUNTRY_DATA } from '../../resources/countryTestData';
 
 const setup = (param?: ICountryDetail) => {
   // eslint-disable-next-line react/jsx-props-no-spreading

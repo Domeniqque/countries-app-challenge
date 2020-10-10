@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { COUNTRY_DATA_LIST } from '../../resources/countryData';
+import { COUNTRY_DATA_LIST } from '../../resources/countryTestData';
 import CountryList from './index';
 
 describe('CountryList', () => {

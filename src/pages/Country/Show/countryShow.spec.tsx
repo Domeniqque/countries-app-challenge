@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 import CountryDetail from './index';
-import { COUNTRY_DATA_LIST } from '../../resources/countryData';
+import { COUNTRY_DATA_LIST } from '../../../resources/countryTestData';
 
 const mockStore = configureMockStore();
 

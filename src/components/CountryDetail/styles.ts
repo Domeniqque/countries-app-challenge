@@ -5,6 +5,7 @@ export const Card = styled.div`
   background: var(--white);
   padding: 24px 16px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 export const CardHeader = styled.header`
@@ -27,6 +28,12 @@ export const CardHeader = styled.header`
       font-size: 1rem;
       margin-top: 2px;
     }
+  }
+
+  > a {
+    position: absolute;
+    top: 24px;
+    right: 16px;
   }
 `;
 

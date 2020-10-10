@@ -4,7 +4,7 @@ import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Dashboard from './index';
+import CountryList from './index';
 import store from '../../store';
 
 jest.mock('../../services/api/country', () => ({
@@ -81,7 +81,7 @@ const setup = () => {
   const utils = render(
     <Provider store={store}>
       <MemoryRouter>
-        <Dashboard />
+        <CountryList />
       </MemoryRouter>
     </Provider>,
   );
@@ -93,7 +93,7 @@ const setup = () => {
   return { ...utils, inputSearch };
 };
 
-describe('Dashboard page', () => {
+describe('CountryList page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

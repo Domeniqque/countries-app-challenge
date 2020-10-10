@@ -1,13 +1,10 @@
 import React from 'react';
+import { FaPen } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { ICountry } from '../../models/Country';
 import { numberWithDots } from '../../utils/formatNumber';
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  TopLevelDomain,
-} from './styles';
+import { Card, CardHeader, CardBody, TopLevelDomain } from './styles';
 
 export interface ICountryDetail {
   country?: ICountry;
@@ -16,7 +13,7 @@ export interface ICountryDetail {
 const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
   if (!country) {
     return <p>Country not found</p>;
-  };
+  }
 
   return (
     <Card>
@@ -27,6 +24,10 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
           <h1>{country.name}</h1>
           <p>{country.capital}</p>
         </div>
+
+        <Link to={`/country/${country._id}/edit`}>
+          <FaPen />
+        </Link>
       </CardHeader>
 
       <CardBody>
@@ -63,13 +64,13 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
 
           <ul>
             {country.topLevelDomains?.map(tld => (
-                <li key={`tld-${tld._id}`}>
-                  <p>
-                    <span>www.example</span>
-                    <strong>{tld.name}</strong>
-                  </p>
-                </li>
-              ))}
+              <li key={`tld-${tld._id}`}>
+                <p>
+                  <span>www.example</span>
+                  <strong>{tld.name}</strong>
+                </p>
+              </li>
+            ))}
           </ul>
         </TopLevelDomain>
       </CardBody>

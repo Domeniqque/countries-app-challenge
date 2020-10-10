@@ -1,13 +1,16 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Dashboard from '../pages/Dashboard';
-import Country from '../pages/Country';
+import CountryList from '../pages/Country';
+import ShowCountry from '../pages/Country/Show';
+import EditCountry from '../pages/Country/Edit';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={Dashboard} />
-    <Route path="/country/:id" component={Country} />
+    <Route path="/country" exact component={CountryList} />
+    <Route path="/country/:id" exact component={ShowCountry} />
+    <Route path="/country/:id/edit" component={EditCountry} />
+    <Route path="*" exact render={() => <Redirect to="/country" />} />
   </Switch>
 );
 
