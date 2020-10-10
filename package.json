@@ -19,6 +19,7 @@
     "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5",
     "redux-mock-store": "^1.5.4",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.2.0",
     "ts-debounce": "^2.0.1"
   },
