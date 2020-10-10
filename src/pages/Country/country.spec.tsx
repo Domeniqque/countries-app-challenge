@@ -1,37 +1,27 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter, Route } from 'react-router-dom';
+import configureMockStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
 import CountryDetail from './index';
-import { COUNTRY_DATA } from '../../resources/countryData';
-import { FIND_COUNTRY_QUERY } from '../../models/Country';
+import { COUNTRY_DATA_LIST } from '../../resources/countryData';
 
-const apolloMock = [
-  {
-    request: {
-      query: FIND_COUNTRY_QUERY,
-      variables: {
-        id: COUNTRY_DATA._id,
-      },
-    },
-    result: {
-      data: {
-        countries: [COUNTRY_DATA],
-      },
-    },
-  },
-];
+const mockStore = configureMockStore();
 
 const setup = ({ countryId }: { countryId: string }) => {
+  const store = mockStore({
+    country: { list: COUNTRY_DATA_LIST },
+  });
+
   const utils = render(
-    <MockedProvider mocks={apolloMock} addTypename={false}>
+    <Provider store={store}>
       <MemoryRouter initialEntries={[`/country/${countryId}`]}>
         <Route path="/country/:id">
           <CountryDetail />
         </Route>
       </MemoryRouter>
-    </MockedProvider>,
+    </Provider>,
   );
 
   return { ...utils };
@@ -39,10 +29,10 @@ const setup = ({ countryId }: { countryId: string }) => {
 
 describe('Country Details Page', () => {
   it('should render a country', async () => {
-    const countryId = COUNTRY_DATA._id;
-    const { getByText, findByText } = setup({ countryId });
+    const country = COUNTRY_DATA_LIST[0];
+    const { getByText, findByText } = setup({ countryId: country._id });
 
-    expect(getByText(/loading/i)).toBeInTheDocument();
-    expect(await findByText(COUNTRY_DATA.name)).toBeInTheDocument();
+    expect(getByText(/go back/i)).toBeInTheDocument();
+    expect(await findByText(country.name)).toBeInTheDocument();
   });
 });

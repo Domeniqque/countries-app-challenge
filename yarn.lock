@@ -2000,6 +2000,13 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/redux-mock-store@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/redux-mock-store/-/redux-mock-store-1.0.2.tgz#c27d5deadfb29d8514bdb0fc2cadae6feea1922d"
+  integrity sha512-6LBtAQBN34i7SI5X+Qs4zpTEZO1tTDZ6sZ9fzFjYwTl3nLQXaBtwYdoV44CzNnyKu438xJ1lSIYyw0YMvunESw==
+  dependencies:
+    redux "^4.0.5"
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
@@ -6205,6 +6212,11 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immer@^7.0.9:
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.9.tgz#28e7552c21d39dd76feccd2b800b7bc86ee4a62e"
+  integrity sha512-Vs/gxoM4DqNAYR7pugIxi0Xc8XAun/uy7AQu4fLLqaTBHxjOP9pJ266Q9MWA/ly4z6rAFZbvViOtihxUZ7O28A==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -7979,6 +7991,11 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -10391,6 +10408,13 @@ redent@^3.0.0:
   dependencies:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
+
+redux-mock-store@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.4.tgz#90d02495fd918ddbaa96b83aef626287c9ab5872"
+  integrity sha512-xmcA0O/tjCLXhh9Fuiq6pMrJCwFRaouA8436zcikdIpYWWCjU76CRk+i2bHx8EeiSiMGnB85/lZdU3wIJVXHTA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
 
 redux@^4.0.0, redux@^4.0.5:
   version "4.0.5"

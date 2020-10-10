@@ -1,67 +1,137 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing';
+import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import Dashboard from './index';
-import { COUNTRY_DATA_LIST } from '../../resources/countryData';
-import { ALL_COUNTRIES_QUERY } from '../../models/Country';
+import store from '../../store';
 
-const apolloMock = [
-  {
-    request: {
-      query: ALL_COUNTRIES_QUERY,
-    },
-    result: {
-      data: {
-        countries: COUNTRY_DATA_LIST,
+jest.mock('../../services/api/country', () => ({
+  fetchCountries: jest.fn().mockResolvedValue({
+    countries: [
+      {
+        _id: '3',
+        name: 'Afghanistan',
+        capital: 'Kabul',
+        area: 652230,
+        population: 27657145,
+        location: {
+          latitude: 33,
+          longitude: 65,
+        },
+        topLevelDomains: [
+          {
+            _id: '4',
+            name: '.af',
+          },
+        ],
+        flag: {
+          svgFile: 'https://restcountries.eu/data/afg.svg',
+          emoji: '🇦🇫',
+        },
       },
-    },
-  },
-];
+      {
+        _id: '641',
+        name: 'Bouvet Island',
+        capital: '',
+        area: 49,
+        population: 0,
+        location: {
+          latitude: -54.43333333,
+          longitude: 3.4,
+        },
+        topLevelDomains: [
+          {
+            _id: '642',
+            name: '.bv',
+          },
+        ],
+        flag: {
+          svgFile: 'https://restcountries.eu/data/bvt.svg',
+          emoji: '🇧🇻',
+        },
+      },
+      {
+        _id: '661',
+        name: 'Brazil',
+        capital: 'Brasília',
+        area: 8515767,
+        population: 206135893,
+        location: {
+          latitude: -10,
+          longitude: -55,
+        },
+        topLevelDomains: [
+          {
+            _id: '662',
+            name: '.br',
+          },
+        ],
+        flag: {
+          svgFile: 'https://restcountries.eu/data/bra.svg',
+          emoji: '🇧🇷',
+        },
+      },
+    ],
+  }),
+}));
 
 const setup = () => {
   const utils = render(
-    <MockedProvider mocks={apolloMock} addTypename={false}>
-      <Dashboard />
-    </MockedProvider>,
-    { wrapper: MemoryRouter },
+    <Provider store={store}>
+      <MemoryRouter>
+        <Dashboard />
+      </MemoryRouter>
+    </Provider>,
   );
 
-  const inputSearch = utils.getByLabelText(/search by country name/i);
+  const inputSearch = utils.getByLabelText(
+    /search by country name/i,
+  ) as HTMLInputElement;
 
   return { ...utils, inputSearch };
 };
 
 describe('Dashboard page', () => {
-  it('should render countries', async () => {
-    const { getByText, findAllByRole } = setup();
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-    expect(getByText(/loading/i)).toBeInTheDocument();
-    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA_LIST.length);
+  it('should render countries', async () => {
+    await act(async () => {
+      const { getByText, findAllByRole } = setup();
+
+      expect(getByText(/loading/i)).toBeInTheDocument();
+      expect((await findAllByRole(/link/)).length).toBe(3);
+    });
   });
 
   it('should search a country', async () => {
-    const { inputSearch, findAllByRole, findByText } = setup();
-    expect(await findByText(/Brazil/i)).toBeInTheDocument();
+    await act(async () => {
+      const { inputSearch, findAllByRole, findByText } = setup();
 
-    fireEvent.change(inputSearch, { target: { value: 'Afghanistan' } });
+      expect(await findByText(/Brazil/i)).toBeInTheDocument();
 
-    expect((inputSearch as HTMLInputElement).value).toBe('Afghanistan');
+      fireEvent.change(inputSearch, { target: { value: 'Afghanistan' } });
 
-    expect(await findByText('Afghanistan')).toBeInTheDocument();
-    expect((await findAllByRole(/link/)).length).toBe(1);
+      expect(inputSearch.value).toBe('Afghanistan');
+
+      expect(await findByText('Afghanistan')).toBeInTheDocument();
+      expect((await findAllByRole(/link/)).length).toBe(1);
+    });
   });
 
   it('should return empty list if filter does not match', async () => {
-    const { inputSearch, findAllByRole, queryByRole } = setup();
+    await act(async () => {
+      const { inputSearch, findAllByRole, queryByRole } = setup();
 
-    expect((await findAllByRole(/link/)).length).toBe(COUNTRY_DATA_LIST.length);
+      expect((await findAllByRole(/link/)).length).toBe(3);
 
-    fireEvent.change(inputSearch, { target: { value: 'Dont match' } });
+      fireEvent.change(inputSearch, { target: { value: 'Dont match' } });
 
-    expect((inputSearch as HTMLInputElement).value).toBe('Dont match');
-
-    expect(queryByRole(/link/)).toBeNull();
+      expect(inputSearch.value).toBe('Dont match');
+      expect(queryByRole(/link/)).toBeNull();
+    });
   });
 });

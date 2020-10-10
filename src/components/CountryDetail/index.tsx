@@ -11,12 +11,11 @@ import {
 
 export interface ICountryDetail {
   country?: ICountry;
-  loading?: boolean;
 }
 
-const CountryDetail: React.FC<ICountryDetail> = ({ country, loading }) => {
-  if (!country || loading) {
-    return <p>Loading...</p>;
+const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
+  if (!country) {
+    return <p>Country not found</p>;
   };
 
   return (

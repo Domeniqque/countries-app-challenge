@@ -14,20 +14,19 @@ const setup = (param?: ICountryDetail) => {
 };
 
 describe('CountryDetail', () => {
-  it('should render loading', () => {
-    const { getByText } = setup({ loading: true, country: undefined });
+  it('should not found', () => {
+    const { getByText } = setup({ country: undefined });
 
-    expect(getByText(/loading/i)).toBeInTheDocument();
+    expect(getByText(/not found/i)).toBeInTheDocument();
   });
 
   it('should render country detail', () => {
     const country = COUNTRY_DATA;
     const { queryByText, getByRole, getByText } = setup({
-      loading: false,
       country,
     });
 
-    expect(queryByText(/loading/i)).toBeNull();
+    expect(queryByText(/not found/i)).toBeNull();
     expect(getByRole(/img/).getAttribute('src')).toBe(country.flag.svgFile);
     expect(getByText(country.name)).toBeInTheDocument();
   });

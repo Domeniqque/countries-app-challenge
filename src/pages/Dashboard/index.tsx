@@ -1,41 +1,51 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { useQuery } from '@apollo/client';
 import { debounce } from 'ts-debounce';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Container, Title, SearchContainer } from './styles';
 import CountryList from '../../components/CountryList';
-import { ALL_COUNTRIES_QUERY, ICountry } from '../../models/Country';
-
-const INITIAL_DATA = {
-  countries: [],
-};
+import { ICountry } from '../../models/Country';
+import { IState } from '../../store';
+import { addCountryList } from '../../store/modules/country/actions';
+import { fetchCountries } from '../../services/api/country';
 
 const Dashboard: React.FC = () => {
-  const { data = INITIAL_DATA, loading } = useQuery<{
-    countries: ICountry[];
-  }>(ALL_COUNTRIES_QUERY);
-
-  const [filteredData, setFilteredData] = useState<ICountry[]>([]);
   const [filter, setFilter] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const handleChangeFilter = useCallback(
-    (filterValue: string) => {
-      debounce(
-        searchValue => {
-          const countries = data.countries.filter(
-            c => c.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1,
-          );
-
-          setFilter(searchValue);
-          setFilteredData(countries);
-        },
-        150,
-        { isImmediate: true },
-      )(filterValue);
-    },
-    [data?.countries],
+  const filteredCountryList = useSelector<IState, ICountry[]>(state =>
+    state.country.list.filter(c => {
+      return c.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    }),
   );
+
+  const totalCountries = useSelector<IState, number>(
+    state => state.country.list.length,
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (totalCountries === 0) {
+      fetchCountries().then(data => {
+        dispatch(addCountryList(data.countries));
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+    }
+  }, [dispatch, totalCountries]);
+
+  const handleDebouncedFilter = useCallback((filterValue: string) => {
+    debounce(
+      searchValue => {
+        setFilter(searchValue);
+      },
+      150,
+      { isImmediate: true },
+    )(filterValue);
+  }, []);
 
   return (
     <Container>
@@ -50,15 +60,11 @@ const Dashboard: React.FC = () => {
           type="search"
           placeholder="Type a country..."
           aria-label="Search by country name"
-          onChange={e => handleChangeFilter(e.target.value)}
+          onChange={e => handleDebouncedFilter(e.target.value)}
         />
       </SearchContainer>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <CountryList data={filter ? filteredData : data.countries} />
-      )}
+      {loading ? <p>Loading...</p> : <CountryList data={filteredCountryList} />}
     </Container>
   );
 };

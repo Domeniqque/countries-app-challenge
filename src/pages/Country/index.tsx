@@ -1,19 +1,18 @@
-import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
-import { FIND_COUNTRY_QUERY, ICountry } from '../../models/Country';
+import { ICountry } from '../../models/Country';
 import CountryDetail from '../../components/CountryDetail';
 import { Container } from './styles';
+import { IState } from '../../store';
 
 const Country: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, loading } = useQuery<{ countries: ICountry[] }>(
-    FIND_COUNTRY_QUERY,
-    {
-      variables: { id },
-    },
+
+  const country = useSelector<IState, ICountry | undefined>(state =>
+    state.country.list.find(c => c._id === id),
   );
 
   return (
@@ -23,10 +22,7 @@ const Country: React.FC = () => {
         <span>go back</span>
       </Link>
 
-      <CountryDetail
-        loading={loading}
-        country={data?.countries ? data.countries[0] : undefined}
-      />
+      <CountryDetail country={country} />
     </Container>
   );
 };

@@ -16,7 +16,6 @@ describe('CountryList', () => {
     COUNTRY_DATA_LIST.forEach(data => {
       expect(getByRole('img', { name: `${data.name} flag` })).toBeTruthy();
       expect(getByText(data.name)).toBeTruthy();
-      expect(getByText(data.capital)).toBeTruthy();
     });
   });
 
@@ -35,6 +34,6 @@ describe('CountryList', () => {
 
     fireEvent.click(linkElement);
 
-    expect(container).toHaveTextContent(/Country details/);
+    expect(container).toHaveTextContent(/country details/i);
   });
 });

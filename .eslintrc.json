@@ -38,6 +38,7 @@
     "prettier/prettier": "error",
     "no-underscore-dangle": "off",
     "react/prop-types": "off",
+    "no-param-reassign": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
