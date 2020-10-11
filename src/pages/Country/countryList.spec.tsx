@@ -5,10 +5,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import CountryList from './index';
-import store from '../../store';
+import { store } from '../../store';
 
 jest.mock('../../services/api/country', () => ({
-  fetchCountries: jest.fn().mockResolvedValue({
+  addCountryList: jest.fn().mockResolvedValue({
     countries: [
       {
         _id: '3',

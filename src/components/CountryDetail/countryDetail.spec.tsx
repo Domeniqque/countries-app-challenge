@@ -7,7 +7,6 @@ import CountryDetail, { ICountryDetail } from './index';
 import { COUNTRY_DATA } from '../../resources/countryTestData';
 
 const setup = (param?: ICountryDetail) => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   const utils = render(<CountryDetail {...param} />, { wrapper: MemoryRouter });
 
   return { ...utils };
@@ -33,7 +32,11 @@ describe('CountryDetail', () => {
 
   it('render correctly details', () => {
     const component = renderer
-      .create(<CountryDetail country={COUNTRY_DATA} />)
+      .create(
+        <MemoryRouter>
+          <CountryDetail country={COUNTRY_DATA} />
+        </MemoryRouter>,
+      )
       .toJSON();
 
     expect(component).toMatchSnapshot();

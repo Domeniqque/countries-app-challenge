@@ -5,14 +5,15 @@ export default createGlobalStyle`
     --white: #fff;
     --black: #121213;
     --grey100: #f6f6f6;
-    --grey300: #999;
     --primary: #5C5CFF;
 
     --dark-blue: #243b68;
     --light-blue: #5C5CFF;
     --purple: #6d5dcf;
     --grey200: #f6f6f6;
+    --grey300: #495057;
     --grey400: #3A3A3A;
+    --red: #cd201f;
   }
 
   * {

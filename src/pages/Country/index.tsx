@@ -7,8 +7,8 @@ import { Container, Title, SearchContainer } from './styles';
 import CountryList from '../../components/CountryList';
 import { ICountry } from '../../models/Country';
 import { IState } from '../../store';
-import { addCountryList } from '../../store/modules/country/actions';
-import { fetchCountries } from '../../services/api/country';
+import { addCountryList } from '../../services/api/country';
+import countryActions from '../../store/modules/country/actions';
 
 const Country: React.FC = () => {
   const [filter, setFilter] = useState('');
@@ -21,15 +21,15 @@ const Country: React.FC = () => {
   );
 
   const totalCountries = useSelector<IState, number>(
-    state => state.country.list.length,
+    state => state.country.total,
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (totalCountries === 0) {
-      fetchCountries().then(data => {
-        dispatch(addCountryList(data.countries));
+      addCountryList().then(data => {
+        dispatch(countryActions.addCountryList(data.countries));
         setLoading(false);
       });
     } else {

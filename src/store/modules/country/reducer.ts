@@ -1,21 +1,47 @@
 import { Reducer } from 'redux';
 import produce from 'immer';
-import { ICountryState } from './types';
 
-const INITIAL_STATE: ICountryState = {
+import { actionTypes, ICountryState } from './types';
+
+const { ADD_COUNTRY_LIST, UPDATE_COUNTRY_DATA } = actionTypes;
+
+export const getInitialState = (): ICountryState => ({
   list: [],
-};
+  total: 0,
+});
 
-const country: Reducer<ICountryState> = (state = INITIAL_STATE, action) => {
+const countryReducer: Reducer<ICountryState> = (
+  state = getInitialState(),
+  action,
+) => {
   return produce(state, draft => {
     switch (action.type) {
-      case 'ADD_COUNTRY_LIST': {
-        const { countries } = action.payload;
+      case ADD_COUNTRY_LIST: {
+        const { countries, total } = action.payload;
 
         draft.list = countries;
+        draft.total = total;
 
         return draft;
       }
+
+      case UPDATE_COUNTRY_DATA: {
+        const { id, data } = action.payload;
+
+        const country = state.list.find(a => a._id === id);
+
+        if (country) {
+          const countryIndex = state.list.indexOf(country);
+
+          draft.list.splice(countryIndex, 1, {
+            ...country,
+            ...data,
+          });
+        }
+
+        return draft;
+      }
+
       default: {
         return draft;
       }
@@ -23,4 +49,4 @@ const country: Reducer<ICountryState> = (state = INITIAL_STATE, action) => {
   });
 };
 
-export default country;
+export default countryReducer;

@@ -7,18 +7,18 @@ export interface ICountry {
   _id: string;
   name: string;
   capital: string;
-  area?: number;
-  population?: number;
+  area: string;
+  population: string;
 
   location?: {
     latitude: number;
     longitude: number;
   };
 
-  topLevelDomains?: ITopLevelDomain[];
+  topLevelDomains: ITopLevelDomain[];
 
   flag: {
     emoji: string;
-    svgFile?: string;
+    svgFile: string;
   };
 }

@@ -6,7 +6,7 @@ interface IFetchCountry {
   countries: ICountry[];
 }
 
-export async function fetchCountries(): Promise<IFetchCountry> {
+export async function addCountryList(): Promise<IFetchCountry> {
   const request = await client.query<IFetchCountry>({
     query: GET_COUNTRIES_QUERY,
   });

@@ -18,7 +18,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "globalReturn": false
     },
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -39,6 +40,8 @@
     "no-underscore-dangle": "off",
     "react/prop-types": "off",
     "no-param-reassign": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
