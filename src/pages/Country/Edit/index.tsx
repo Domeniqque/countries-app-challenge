@@ -58,8 +58,9 @@ const EditCountry: React.FC = () => {
         toast.success('Saved successfully!');
         history.push(`/country/${id}`);
       } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          formRef.current?.setErrors(getValidationErrors(err));
+        if (err instanceof Yup.ValidationError && formRef.current) {
+          const errors = getValidationErrors(err);
+          formRef.current.setErrors(errors);
         } else {
           toast.error('Woops! An unnespected error ocourred');
         }
