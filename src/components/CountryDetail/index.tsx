@@ -18,8 +18,6 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
   return (
     <Card>
       <CardHeader>
-        <img src={country.flag.svgFile} alt="Country flag" width={120} />
-
         <div>
           <h1>{country.name}</h1>
           <p>{country.capital}</p>
@@ -32,16 +30,20 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
 
       <CardBody>
         <section>
-          {country.area && (
-            <div>
-              <h6>Area</h6>
-              <p>{`${numberWithDots(country.area)} km²`}</p>
-            </div>
-          )}
+          <img src={country.flag.svgFile} alt="Country flag" width={240} />
 
           <div>
-            <h6>Population</h6>
-            <p>{numberWithDots(country.population)}</p>
+            {country.area && (
+              <div>
+                <h6>Area</h6>
+                <p>{`${numberWithDots(country.area)} km²`}</p>
+              </div>
+            )}
+
+            <div>
+              <h6>Population</h6>
+              <p>{numberWithDots(country.population)}</p>
+            </div>
           </div>
         </section>
 
@@ -49,9 +51,10 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
           <details>
             <summary>Top Level Domains</summary>
             <p>
-              A country code top-level domain (ccTLD) is an Internet top-level
-              domain generally used or reserved for a country, sovereign state,
-              or dependent territory identified with a country code.&nbsp;
+              &quot;A country code top-level domain (ccTLD) is an Internet
+              top-level domain generally used or reserved for a country,
+              sovereign state, or dependent territory identified with a country
+              code.&rdquo;&nbsp;
               <a
                 rel="noopener noreferrer"
                 target="_blank"

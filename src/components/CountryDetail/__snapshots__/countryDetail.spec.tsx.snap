@@ -2,16 +2,11 @@
 
 exports[`CountryDetail render correctly details 1`] = `
 <div
-  className="sc-bdnylx gkDasy"
+  className="sc-bdnylx gyPvtp"
 >
   <header
-    className="sc-gtssRu huBXiS"
+    className="sc-gtssRu kLIGVV"
   >
-    <img
-      alt="Country flag"
-      src="https://restcountries.eu/data/afg.svg"
-      width={120}
-    />
     <div>
       <h1>
         Afghanistan
@@ -45,35 +40,42 @@ exports[`CountryDetail render correctly details 1`] = `
     </a>
   </header>
   <main
-    className="sc-dlnjPT fqZdor"
+    className="sc-dlnjPT eidhla"
   >
     <section>
+      <img
+        alt="Country flag"
+        src="https://restcountries.eu/data/afg.svg"
+        width={240}
+      />
       <div>
-        <h6>
-          Area
-        </h6>
-        <p>
-          652.230 km²
-        </p>
-      </div>
-      <div>
-        <h6>
-          Population
-        </h6>
-        <p>
-          27.657.145
-        </p>
+        <div>
+          <h6>
+            Area
+          </h6>
+          <p>
+            652.230 km²
+          </p>
+        </div>
+        <div>
+          <h6>
+            Population
+          </h6>
+          <p>
+            27.657.145
+          </p>
+        </div>
       </div>
     </section>
     <section
-      className="sc-hKFyIo ehJLqX"
+      className="sc-hKFyIo jmUspT"
     >
       <details>
         <summary>
           Top Level Domains
         </summary>
         <p>
-          A country code top-level domain (ccTLD) is an Internet top-level domain generally used or reserved for a country, sovereign state, or dependent territory identified with a country code. 
+          "A country code top-level domain (ccTLD) is an Internet top-level domain generally used or reserved for a country, sovereign state, or dependent territory identified with a country code.” 
           <a
             href="https://en.m.wikipedia.org/wiki/Country_code_top-level_domain"
             rel="noopener noreferrer"

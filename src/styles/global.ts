@@ -1,18 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
+import 'react-placeholder/lib/reactPlaceholder.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default createGlobalStyle`
   :root {
     --white: #fff;
     --black: #121213;
     --grey100: #f6f6f6;
-    --primary: #5C5CFF;
 
-    --dark-blue: #243b68;
     --light-blue: #5C5CFF;
     --purple: #6d5dcf;
     --grey200: #f6f6f6;
-    --grey300: #495057;
-    --grey400: #3A3A3A;
+    --grey300: #868e96;
+    --grey400: #495057;
     --red: #cd201f;
   }
 
@@ -47,7 +48,7 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: var(--purple);
+    color: var(--light-blue);
   }
 
   ul {
@@ -56,5 +57,9 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  .Toastify__toast--success {
+    background: var(--purple);
   }
 `;
