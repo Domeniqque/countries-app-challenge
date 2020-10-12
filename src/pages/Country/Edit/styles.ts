@@ -11,6 +11,7 @@ export const Card = styled.div`
   background: var(--white);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   position: relative;
+  margin-top: 60px;
 `;
 
 export const CardHeader = styled.header`
@@ -18,21 +19,19 @@ export const CardHeader = styled.header`
   display: flex;
   min-height: 3.5rem;
   align-items: center;
-  margin-bottom: 0;
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 
   h1 {
-    font-size: 1.2rem;
-    line-height: 1.2;
+    font-size: 1.4rem;
     font-weight: 500;
-    color: var(--purple);
+    color: var(--grey400);
   }
 `;
 
 export const CardBody = styled.main`
   flex: 1 1 auto;
   margin: 0;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem;
   position: relative;
 `;
 

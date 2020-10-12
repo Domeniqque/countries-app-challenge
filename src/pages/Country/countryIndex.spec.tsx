@@ -100,16 +100,20 @@ describe('CountryList page', () => {
 
   it('should render countries', async () => {
     await act(async () => {
-      const { getByText, findAllByRole } = setup();
+      const { getByRole, findAllByTestId } = setup();
+      const loadingContainer = getByRole('alert');
+      expect(loadingContainer).toBeInTheDocument();
+      expect(loadingContainer.getAttribute('aria-busy')).toBe('true');
 
-      expect(getByText(/loading/i)).toBeInTheDocument();
-      expect((await findAllByRole(/link/)).length).toBe(3);
+      expect((await findAllByTestId(/country-item/)).length).toBe(3);
+
+      expect(loadingContainer.getAttribute('aria-busy')).toBe('false');
     });
   });
 
   it('should search a country', async () => {
     await act(async () => {
-      const { inputSearch, findAllByRole, findByText } = setup();
+      const { inputSearch, findAllByTestId, findByText } = setup();
 
       expect(await findByText(/Brazil/i)).toBeInTheDocument();
 
@@ -118,20 +122,20 @@ describe('CountryList page', () => {
       expect(inputSearch.value).toBe('Afghanistan');
 
       expect(await findByText('Afghanistan')).toBeInTheDocument();
-      expect((await findAllByRole(/link/)).length).toBe(1);
+      expect((await findAllByTestId(/country-item/)).length).toBe(1);
     });
   });
 
   it('should return empty list if filter does not match', async () => {
     await act(async () => {
-      const { inputSearch, findAllByRole, queryByRole } = setup();
+      const { inputSearch, findAllByTestId, queryByTestId } = setup();
 
-      expect((await findAllByRole(/link/)).length).toBe(3);
+      expect((await findAllByTestId(/country-item/)).length).toBe(3);
 
       fireEvent.change(inputSearch, { target: { value: 'Dont match' } });
 
       expect(inputSearch.value).toBe('Dont match');
-      expect(queryByRole(/link/)).toBeNull();
+      expect(queryByTestId(/country-item/)).toBeNull();
     });
   });
 });
