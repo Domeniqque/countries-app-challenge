@@ -5,8 +5,8 @@ const COUNTRY_DATA_LIST: ICountry[] = [
     _id: '3',
     name: 'Afghanistan',
     capital: 'Kabul',
-    area: 652230,
-    population: 27657145,
+    area: '652230',
+    population: '27657145',
     location: {
       latitude: 33,
       longitude: 65,
@@ -26,8 +26,8 @@ const COUNTRY_DATA_LIST: ICountry[] = [
     _id: '641',
     name: 'Bouvet Island',
     capital: '',
-    area: 49,
-    population: 0,
+    area: '49',
+    population: '0',
     location: {
       latitude: -54.43333333,
       longitude: 3.4,
@@ -47,8 +47,8 @@ const COUNTRY_DATA_LIST: ICountry[] = [
     _id: '661',
     name: 'Brazil',
     capital: 'Brasília',
-    area: 8515767,
-    population: 206135893,
+    area: '8515767',
+    population: '206135893',
     location: {
       latitude: -10,
       longitude: -55,
