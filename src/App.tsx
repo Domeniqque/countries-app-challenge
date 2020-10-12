@@ -8,18 +8,16 @@ import Routes from './routes';
 import GlobalStyles from './styles/global';
 import { persistor, store } from './store';
 
-import 'react-toastify/dist/ReactToastify.css';
-
 const App: React.FC = () => (
   <Provider store={store}>
+    <GlobalStyles />
+
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
     </PersistGate>
-
     <ToastContainer />
-    <GlobalStyles />
   </Provider>
 );
 

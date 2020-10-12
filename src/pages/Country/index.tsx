@@ -64,7 +64,7 @@ const Country: React.FC = () => {
         />
       </SearchContainer>
 
-      {loading ? <p>Loading...</p> : <CountryList data={filteredCountryList} />}
+      <CountryList data={filteredCountryList} loading={loading} />
     </Container>
   );
 };

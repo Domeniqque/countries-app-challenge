@@ -36,20 +36,30 @@ export const Card = styled.li`
 
       p {
         color: var(--grey300);
-        line-height: 24px;
+        margin-top: 3px;
       }
     }
 
     svg {
       align-self: center;
-      color: var(--grey400);
+      color: var(--grey300);
       font-size: 1.1rem;
     }
 
     &:hover {
       svg {
-        color: var(--primary);
+        color: var(--purple);
+        animation: slide 1s infinite alternate;
       }
+    }
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(0px);
+    }
+    to {
+      transform: translateX(-5px);
     }
   }
 `;

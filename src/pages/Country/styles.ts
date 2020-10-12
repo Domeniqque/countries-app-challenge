@@ -15,8 +15,8 @@ export const Container = styled(BaseContainer)`
 export const Title = styled.h1`
   text-align: center;
   font-size: 3rem;
-  color: var(--dark-blue);
-  margin: 6rem 0 4rem;
+  color: var(--purple);
+  margin: 6rem 0 2rem;
 `;
 
 export const SearchContainer = styled.div`
@@ -24,10 +24,14 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: space-between;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  transition: box-shadow 200ms;
+  transition: box-shadow ease-out 200ms;
 
   &:focus-within {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus-within svg {
+    color: var(--purple);
   }
 
   input {
