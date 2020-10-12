@@ -44,12 +44,8 @@ describe('CountryList Component', () => {
   it('should redirect to country details page on click', () => {
     const countryData = COUNTRY_DATA_LIST[0];
 
-    const { container, getByText, getByRole } = setup(
-      [countryData],
-      countryData._id,
-    );
+    const { container, getByRole } = setup([countryData], countryData._id);
 
-    expect(getByText(new RegExp(countryData.name))).toBeInTheDocument();
     const linkElement = getByRole(/link/);
 
     fireEvent.click(linkElement);

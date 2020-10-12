@@ -9,14 +9,14 @@ exports[`CountryDetail render correctly details 1`] = `
   >
     <div>
       <h1>
-        Afghanistan
+        Bolivia (Plurinational State of)
       </h1>
       <p>
-        Kabul
+        Sucre
       </p>
     </div>
     <a
-      href="/country/3/edit"
+      href="/country/561/edit"
       onClick={[Function]}
     >
       <svg
@@ -40,13 +40,13 @@ exports[`CountryDetail render correctly details 1`] = `
     </a>
   </header>
   <main
-    className="sc-dlnjPT eidhla"
+    className="sc-dlnjPT WHlYL"
   >
     <section>
       <img
         alt="Country flag"
-        src="https://restcountries.eu/data/afg.svg"
-        width={240}
+        src="https://restcountries.eu/data/bol.svg"
+        width="40%"
       />
       <div>
         <div>
@@ -54,7 +54,7 @@ exports[`CountryDetail render correctly details 1`] = `
             Area
           </h6>
           <p>
-            652.230 km²
+            1.098.581 km²
           </p>
         </div>
         <div>
@@ -62,7 +62,7 @@ exports[`CountryDetail render correctly details 1`] = `
             Population
           </h6>
           <p>
-            27.657.145
+            10.985.059
           </p>
         </div>
       </div>
@@ -92,7 +92,7 @@ exports[`CountryDetail render correctly details 1`] = `
               www.example
             </span>
             <strong>
-              .af
+              .bo
             </strong>
           </p>
         </li>

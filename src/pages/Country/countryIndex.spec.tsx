@@ -8,7 +8,7 @@ import CountryList from './index';
 import { store } from '../../store';
 
 jest.mock('../../services/api/country', () => ({
-  addCountryList: jest.fn().mockResolvedValue({
+  fetchCountryList: jest.fn().mockResolvedValue({
     countries: [
       {
         _id: '3',
@@ -74,6 +74,36 @@ jest.mock('../../services/api/country', () => ({
         },
       },
     ],
+  }),
+  fetchNearCountries: jest.fn().mockResolvedValue({
+    data: {
+      country: [
+        {
+          distanceToOtherCountries: [
+            {
+              countryName: 'Bolivia (Plurinational State of)',
+              distanceInKm: 1333.0445603821204,
+            },
+            {
+              countryName: 'Paraguay',
+              distanceInKm: 1481.9677422904354,
+            },
+            {
+              countryName: 'Suriname',
+              distanceInKm: 1562.413522321208,
+            },
+            {
+              countryName: 'French Guiana',
+              distanceInKm: 1574.1741073802189,
+            },
+            {
+              countryName: 'Guyana',
+              distanceInKm: 1727.7054803482656,
+            },
+          ],
+        },
+      ],
+    },
   }),
 }));
 
