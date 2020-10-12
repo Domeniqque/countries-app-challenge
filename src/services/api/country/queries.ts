@@ -23,3 +23,14 @@ export const GET_COUNTRIES_QUERY = gql`
     }
   }
 `;
+
+export const GET_NEAR_COUNTRIES = gql`
+  query CountryDistance($id: String) {
+    country: Country(_id: $id) {
+      distanceToOtherCountries(first: 5) {
+        distanceInKm
+        countryName
+      }
+    }
+  }
+`;

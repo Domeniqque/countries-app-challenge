@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import CountryDetail, { ICountryDetail } from './index';
-import { COUNTRY_DATA } from '../../resources/countryTestData';
+import { BOLIVIA_DATA } from '../../resources/countryTestData';
 
 const setup = (param?: ICountryDetail) => {
   const utils = render(<CountryDetail {...param} />, { wrapper: MemoryRouter });
@@ -20,7 +20,7 @@ describe('CountryDetail', () => {
   });
 
   it('should render country detail', () => {
-    const country = COUNTRY_DATA;
+    const country = BOLIVIA_DATA;
     const { queryByText, getByRole, getByText } = setup({
       country,
     });
@@ -34,7 +34,7 @@ describe('CountryDetail', () => {
     const component = renderer
       .create(
         <MemoryRouter>
-          <CountryDetail country={COUNTRY_DATA} />
+          <CountryDetail country={BOLIVIA_DATA} />
         </MemoryRouter>,
       )
       .toJSON();

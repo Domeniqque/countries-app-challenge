@@ -49,18 +49,22 @@ export const CardBody = styled.main`
       justify-content: space-around;
       padding: 0.8rem;
 
-      h6 {
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        color: var(--grey400);
-        font-weight: 400;
-      }
+      div {
+        padding-bottom: 6px;
 
-      p {
-        font-size: 1.6rem;
-        color: var(--purple);
-        line-height: 28px;
-        font-weight: 400;
+        h6 {
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          color: var(--grey400);
+          font-weight: 400;
+        }
+
+        p {
+          font-size: 1.6rem;
+          color: var(--purple);
+          line-height: 28px;
+          font-weight: 400;
+        }
       }
     }
   }

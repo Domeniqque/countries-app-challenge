@@ -15,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
+    "react-map-gl": "^5.2.9",
     "react-placeholder": "^4.0.3",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
@@ -33,6 +34,7 @@
     "@types/node": "^14.11.5",
     "@types/react": "^16.9.51",
     "@types/react-dom": "^16.9.8",
+    "@types/react-map-gl": "^5.2.7",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-test-renderer": "^16.9.3",
@@ -63,9 +65,10 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/pages/**/*.tsx",
-      "src/components/**/*.tsx",
+      "src/pages/**/*.{tsx,ts}",
+      "src/components/**/*.{tsx,ts}",
       "src/store/**/*.ts",
+      "!src/**/styles.ts",
       "!src/store/modules/**/types.ts",
       "!src/store/modules/rootReducer.ts",
       "!src/store/index.ts",

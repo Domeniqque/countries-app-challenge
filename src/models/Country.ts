@@ -3,6 +3,11 @@ interface ITopLevelDomain {
   name: string;
 }
 
+interface IDistanceToOtherCountries {
+  distanceInKm: number;
+  countryName: string;
+}
+
 export interface ICountry {
   _id: string;
   name: string;
@@ -10,7 +15,7 @@ export interface ICountry {
   area: string;
   population: string;
 
-  location?: {
+  location: {
     latitude: number;
     longitude: number;
   };
@@ -21,4 +26,6 @@ export interface ICountry {
     emoji: string;
     svgFile: string;
   };
+
+  distanceToOtherCountries?: IDistanceToOtherCountries[];
 }

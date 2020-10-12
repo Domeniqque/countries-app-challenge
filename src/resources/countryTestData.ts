@@ -1,46 +1,47 @@
 import { ICountry } from '../models/Country';
+import { INearCountry } from '../services/api/country';
 
 const COUNTRY_DATA_LIST: ICountry[] = [
   {
-    _id: '3',
-    name: 'Afghanistan',
-    capital: 'Kabul',
-    area: '652230',
-    population: '27657145',
+    _id: '561',
+    name: 'Bolivia (Plurinational State of)',
+    capital: 'Sucre',
+    area: '1098581',
+    population: '10985059',
     location: {
-      latitude: 33,
-      longitude: 65,
+      latitude: -17,
+      longitude: -65,
     },
     topLevelDomains: [
       {
-        _id: '4',
-        name: '.af',
+        _id: '562',
+        name: '.bo',
       },
     ],
     flag: {
-      svgFile: 'https://restcountries.eu/data/afg.svg',
-      emoji: '🇦🇫',
+      svgFile: 'https://restcountries.eu/data/bol.svg',
+      emoji: '🇧🇴',
     },
   },
   {
-    _id: '641',
-    name: 'Bouvet Island',
-    capital: '',
-    area: '49',
-    population: '0',
+    _id: '3278',
+    name: 'Paraguay',
+    capital: 'Asunción',
+    area: '406752',
+    population: '6854536',
     location: {
-      latitude: -54.43333333,
-      longitude: 3.4,
+      latitude: -23,
+      longitude: -58,
     },
     topLevelDomains: [
       {
-        _id: '642',
-        name: '.bv',
+        _id: '3279',
+        name: '.py',
       },
     ],
     flag: {
-      svgFile: 'https://restcountries.eu/data/bvt.svg',
-      emoji: '🇧🇻',
+      svgFile: 'https://restcountries.eu/data/pry.svg',
+      emoji: '🇵🇾',
     },
   },
   {
@@ -66,6 +67,13 @@ const COUNTRY_DATA_LIST: ICountry[] = [
   },
 ];
 
-const COUNTRY_DATA = COUNTRY_DATA_LIST[0];
+const BOLIVIA_DATA = COUNTRY_DATA_LIST[0];
 
-export { COUNTRY_DATA, COUNTRY_DATA_LIST };
+const BRAZIL_DATA = COUNTRY_DATA_LIST[2];
+
+const BRAZIL_COORDINATES: INearCountry = {
+  countryName: 'Brazil',
+  distanceInKm: 1481.9677422904354,
+};
+
+export { BOLIVIA_DATA, COUNTRY_DATA_LIST, BRAZIL_COORDINATES, BRAZIL_DATA };
