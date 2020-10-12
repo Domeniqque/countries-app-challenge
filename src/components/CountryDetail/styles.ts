@@ -40,6 +40,7 @@ export const CardBody = styled.main`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    max-height: 120px;
 
     > div {
       text-align: center;
