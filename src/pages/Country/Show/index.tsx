@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 
 import { ICountry } from '../../../models/Country';
 import CountryDetail from '../../../components/CountryDetail';
+import NearCountriesMap from '../../../components/NearCountriesMap';
 import { IState } from '../../../store';
-import { Container } from './styles';
+import { Container, MapBox, CountryDetailsBox } from './styles';
 
 const ShowCountry: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,14 +16,32 @@ const ShowCountry: React.FC = () => {
     state.country.list.find(c => c._id === id),
   );
 
+  const countries = useSelector<IState, ICountry[]>(
+    state => state.country.list,
+  );
+
   return (
     <Container>
-      <Link to="/">
-        <FaChevronLeft size={24} />
-        <span>go back</span>
-      </Link>
+      <MapBox data-testid="map-container">
+        {country && (
+          <NearCountriesMap
+            countryId={country._id}
+            countryName={country.name}
+            latitude={country.location.latitude}
+            longitude={country.location.longitude}
+            countryList={countries}
+          />
+        )}
+      </MapBox>
 
-      <CountryDetail country={country} />
+      <CountryDetailsBox>
+        <Link to="/">
+          <FaChevronLeft size={24} />
+          <span>go back</span>
+        </Link>
+
+        <CountryDetail country={country} />
+      </CountryDetailsBox>
     </Container>
   );
 };

@@ -7,7 +7,7 @@ import { Container, Title, SearchContainer } from './styles';
 import CountryList from '../../components/CountryList';
 import { ICountry } from '../../models/Country';
 import { IState } from '../../store';
-import { addCountryList } from '../../services/api/country';
+import { fetchCountryList } from '../../services/api/country';
 import countryActions from '../../store/modules/country/actions';
 
 const Country: React.FC = () => {
@@ -28,7 +28,7 @@ const Country: React.FC = () => {
 
   useEffect(() => {
     if (totalCountries === 0) {
-      addCountryList().then(data => {
+      fetchCountryList().then(data => {
         dispatch(countryActions.addCountryList(data.countries));
         setLoading(false);
       });

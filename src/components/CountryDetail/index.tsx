@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaPen } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+
 import { ICountry } from '../../models/Country';
 import { numberWithDots } from '../../utils/formatNumber';
 
@@ -30,7 +31,7 @@ const CountryDetail: React.FC<ICountryDetail> = ({ country }) => {
 
       <CardBody>
         <section>
-          <img src={country.flag.svgFile} alt="Country flag" width={240} />
+          <img src={country.flag.svgFile} alt="Country flag" width="40%" />
 
           <div>
             {country.area && (
