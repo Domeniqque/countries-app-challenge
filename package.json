@@ -42,10 +42,12 @@
     "@types/yup": "^0.29.8",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "cypress": "^5.4.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -61,7 +63,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen --maxWorkers=4",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --env=jest-environment-jsdom-sixteen --coverage --watchAll"
+    "coverage": "react-scripts test --env=jest-environment-jsdom-sixteen --coverage --watchAll",
+    "e2e": "cypress open"
   },
   "jest": {
     "collectCoverageFrom": [
