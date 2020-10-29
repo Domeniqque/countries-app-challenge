@@ -35,7 +35,7 @@ const ShowCountry: React.FC = () => {
       </MapBox>
 
       <CountryDetailsBox>
-        <Link to="/">
+        <Link to="/country">
           <FaChevronLeft size={24} />
           <span>go back</span>
         </Link>
